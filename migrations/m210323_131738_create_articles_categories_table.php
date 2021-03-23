@@ -19,7 +19,7 @@ class m210323_131738_create_articles_categories_table extends Migration
 
         $this->createTable('{{%articles_categories}}', [
             'id' => $this->primaryKey(),
-            'title'=>$this->string()->notNull(),
+            'title'=>$this->string()->notNull()->unique(),
         ], $tableOptions);
     }
 
