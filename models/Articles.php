@@ -3,17 +3,22 @@
 namespace app\models;
 
 use Yii;
+use app\customs\models\User;
 
 /**
  * This is the model class for table "articles".
  *
  * @property int $id
  * @property string $title
- * @property string $username
+ * @property int $author
  * @property string $text
- * @property int|null $categorie
+ * @property int $categorie_id
  * @property string $pub_date
  * @property int|null $views
+ *
+ * @property User $author0
+ * @property ArticlesCategories $categorie
+ * @property Comments[] $comments
  */
 class Articles extends \yii\db\ActiveRecord
 {
@@ -31,13 +36,14 @@ class Articles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'username', 'text', 'pub_date'], 'required'],
+            [['title', 'author', 'text', 'categorie_id', 'pub_date'], 'required'],
+            [['author', 'categorie_id', 'views'], 'integer'],
             [['text'], 'string'],
-            [['categorie', 'views'], 'integer'],
             [['pub_date'], 'safe'],
-            [['title', 'username'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
             [['title'], 'unique'],
-            [['username'], 'unique'],
+            [['author'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author' => 'id']],
+            [['categorie_id'], 'exist', 'skipOnError' => true, 'targetClass' => ArticlesCategories::className(), 'targetAttribute' => ['categorie_id' => 'id']],
         ];
     }
 
@@ -49,11 +55,41 @@ class Articles extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'username' => 'Username',
+            'author' => 'Author',
             'text' => 'Text',
-            'categorie' => 'Categorie',
+            'categorie_id' => 'Categorie ID',
             'pub_date' => 'Pub Date',
             'views' => 'Views',
         ];
+    }
+
+    /**
+     * Gets query for [[Author0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthor0()
+    {
+        return $this->hasOne(User::className(), ['id' => 'author']);
+    }
+
+    /**
+     * Gets query for [[Categorie]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategorie()
+    {
+        return $this->hasOne(ArticlesCategories::className(), ['id' => 'categorie_id']);
+    }
+
+    /**
+     * Gets query for [[Comments]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Comments::className(), ['articles_id' => 'id']);
     }
 }
