@@ -25,6 +25,7 @@ class m210409_195253_mod_articles_mod_author_User_id extends Migration
 
         $this->renameColumn('{{%articles}}','author','User_id');
 
+
         // creates index for column `User_id`
         $this->createIndex(
             'articles_User_id_idx',
