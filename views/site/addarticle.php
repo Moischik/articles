@@ -4,6 +4,9 @@ use app\widgets\Alert;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+/**
+ * @var app\customs\models\FormAddArticle $formarticlemodel
+ */
 
 $this->title = 'Опубликовать статью';
 $this->params['breadcrumbs'][] = $this->title;
@@ -14,7 +17,6 @@ if (Yii::$app->user->isGuest) {
     $form = ActiveForm::begin();
     ?>
 
-    <?= $form->field($formarticlemodel, 'name')->textInput() ?>
     <?= $form->field($formarticlemodel, 'categorie')->dropDownList([
         1 => 'Литература',
         2 => 'Спорт',
