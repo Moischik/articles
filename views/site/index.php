@@ -13,7 +13,10 @@ $this->params['breadcrumbs'][] = $this->title; ?>
 
     <h1 align="center">Сайт со статьями.</h1>
 
-    <?= '<h2 align="center" >Чтобы опубликовать свою статью нужно ' . Html::a('зарегистрироваться', ['site/registration']) . ' на сайте или ' . Html::a('войти', ['site/login']) . '</h2>' ?>
+    <?php if (Yii::$app->user->isGuest) {
+        echo '<h2>Чтобы опубликовать свою статью, нужно ' . Html::a('зарегистрироваться', ['site/registration']) . ' на сайте или ' . Html::a('войти', ['site/login']) . '</h2>';
+    }  ?>
+
 
     <!--<div class="jumbotron">
         <h1>Congratulations!</h1>
