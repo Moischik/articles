@@ -39,9 +39,9 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Статья', 'url' => ['/site/article']],
-            ['label' => 'О нас', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Статьи', 'url' => ['/site/article']],
+           // ['label' => 'О нас', 'url' => ['/site/about']],
+           // ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Опубликовать статью', 'url' => ['/site/add-article']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Войти', 'url' => ['/site/login']]
