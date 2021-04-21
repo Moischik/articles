@@ -4,6 +4,8 @@ use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+/* @var $regmodel app\models\RegistrationModel */
+
 $this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
 
