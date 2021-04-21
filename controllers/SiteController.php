@@ -5,9 +5,11 @@ namespace app\controllers;
 
 use app\models\Articles;
 use app\customs\models\FormAddArticle;
+use app\models\ArticlesCategories;
 use Yii;
-use app\models\Comments;
+use app\customs\models\FormAddComments;
 use app\models\RegistrationModel;
+use app\models\Comments;
 use app\customs\models\User;
 use yii\data\ActiveDataProvider;
 use yii\debug\models\timeline\DataProvider;
@@ -74,7 +76,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Display reviews about supermarkets
+     * Display all articles
      *
      * @return string
      */
@@ -82,17 +84,19 @@ class SiteController extends Controller
     {
         $this->view->title = 'статья';
         $articlesProvider = new ActiveDataProvider([
-            'query' => Articles::find(),
+            'query' => Articles::find()->with('user'),
             'pagination' => [
                 'pageSize' => '10'
             ],
         ]);
 
+
         return $this->render('article', ['articlesProvider' => $articlesProvider]);
+
     }
 
     /**
-     * Add new review action
+     * Add new article action
      *
      * @return string
      */
@@ -100,24 +104,29 @@ class SiteController extends Controller
     {
         $this->view->title = 'Опубликовать статью';
         $formarticlemodel = new FormAddArticle();
-
+        $articlesProvider = new ActiveDataProvider([
+            'query' => Articles::find()->with('user'),
+            'pagination' => [
+                'pageSize' => '10'
+            ],
+        ]);
 
         if ($formarticlemodel->load(Yii::$app->request->post()) && $formarticlemodel->validate()) {
 
-            $user = User::findOne(['username' => $formarticlemodel->name]);
+            /*$user = User::findOne(['username' => $formarticlemodel->name]);
             if (!$user) {
                 Yii::$app->session->setFlash('error', "Пользователь не найден.");
                 //$this->refresh();
                 return $this->render('addarticle', ['formarticlemodel' => $formarticlemodel]);
-            }
+            }*/
             $articles = new Articles();
-            $articles->author = $user->getId();
+            $articles->User_id =Yii::$app->user->identity->id;
             $articles->text = $formarticlemodel->text;
             $articles->title = $formarticlemodel->title;
             $articles->categorie_id = $formarticlemodel->categorie;
             $articles->pub_date = date('Y-m-d H:i:s');
             if ($articles->save()) {
-                $this->refresh();
+                return $this->render('article', ['articlesProvider' => $articlesProvider]);
             } else {
                 Yii::$app->session->setFlash('error', Json::encode($articles->getErrors()));
             }
@@ -220,5 +229,68 @@ class SiteController extends Controller
     public function actionRegistrationsuccessful()
     {
         return $this->render('registrationsuccessful');
+    }
+
+    /**
+     * Concrete article page
+     *
+     * @return string
+     */
+    public function actionConcretearticle()
+    {
+        $articleId = Yii::$app->request->get('articleId');
+        $this->view->title = 'статья';
+        $model = Articles::findOne($articleId);
+
+        $user = User::find()->where(['id' => $model->User_id])->one();
+        $username = $user->username;
+
+        $pub_date = $model->pub_date;
+
+        $categorie = ArticlesCategories::find()->where(['id' => $model->categorie_id])->one();
+        $categorietitle = $categorie->title;
+
+        $comments = Comments::find()->where(['articles_id' => $articleId])->all();
+        /* $comment = $comments->text;
+          $compub_date = $comments->pub_date;
+          $author = $comments->author;*/
+        $formcommentsmodel = new FormAddComments();
+
+
+        return $this->render('concretearticle', [
+            'model' => $model,
+            'username' => $username,
+            'categorietitle' => $categorietitle,
+            'pub_date' => $pub_date,
+            'comments' => $comments,
+            /*'comment' => $comment,
+            'compub_date' => $compub_date,
+            'author' => $author,*/
+            'formcommentsmodel' => $formcommentsmodel
+        ]);
+
+
+    }
+
+    public function actionSaveComment()
+    {
+        $formcommentsmodel = new FormAddComments();
+
+
+        if ($formcommentsmodel->load(Yii::$app->request->post()) && $formcommentsmodel->validate()) {
+
+            $usercomment = new Comments();
+            $usercomment->User_id = $formcommentsmodel->user_id;
+            $usercomment->text = $formcommentsmodel->text;
+            $usercomment->pub_date = date('Y-m-d H:i:s');
+            $usercomment->articles_id = $formcommentsmodel->articles_id;
+            if (!$usercomment->save()) {
+                Yii::$app->session->setFlash('error', Json::encode($usercomment->getErrors()));
+            }
+
+        } else {
+            Yii::$app->session->setFlash('error', Json::encode($formcommentsmodel->getErrors()));
+        }
+        return $this->redirect(['site/concretearticle?articleId=' . $formcommentsmodel->articles_id]);
     }
 }
