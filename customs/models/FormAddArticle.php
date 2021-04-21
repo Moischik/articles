@@ -28,8 +28,8 @@ class FormAddArticle extends Model
     public function rules()
     {
         return [
-            [['name', 'categorie', 'title','text'], 'required', 'message' => 'Обязательное поле'],
-            [['name', 'title', 'text'], 'trim'],
+            [['categorie', 'title', 'text'], 'required', 'message' => 'Обязательное поле'],
+            [['title', 'text'], 'trim'],
             ['verifyCode', 'captcha', 'message' => 'Капча не введена'],
         ];
     }
@@ -40,7 +40,6 @@ class FormAddArticle extends Model
     public function attributeLabels()
     {
         return [
-            'name' => 'Имя',
             'categorie' => 'Категория',
             'title' => 'Название',
             'text' => 'Текст',
