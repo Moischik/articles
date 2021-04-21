@@ -2,20 +2,24 @@
 
 namespace app\controllers;
 
+use app\customs\models\FormAddArticle;
+use app\customs\models\User;
 use app\models\WhoIsClass;
 use Yii;
 use app\models\Articles;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SupermarketsController implements the CRUD actions for Supermarkets model.
+ * ArticlesController implements the CRUD actions for Articles model.
  */
 class ArticlesController extends WhoIsClass
 {
     public $layout = 'admin';
+
     /**
      * {@inheritdoc}
      */
@@ -84,10 +88,13 @@ class ArticlesController extends WhoIsClass
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            Yii::$app->session->setFlash('error', Json::encode($model->getErrors()));
         }
 
         return $this->render('create', [
             'model' => $model,
+
         ]);
     }
 
@@ -134,7 +141,7 @@ class ArticlesController extends WhoIsClass
     }
 
     /**
-     * Finds the Supermarkets model based on its primary key value.
+     * Finds the Articles model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
      * @return Articles the loaded model
