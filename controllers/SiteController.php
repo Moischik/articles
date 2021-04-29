@@ -15,6 +15,7 @@ use yii\data\ActiveDataProvider;
 use yii\debug\models\timeline\DataProvider;
 use yii\filters\AccessControl;
 use yii\helpers\Json;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -216,7 +217,7 @@ class SiteController extends Controller
             $newuser->password_reset_token = $newuser->generateAuthKey();
             $newuser->save();
             $this->refresh();
-            $this->redirect('http://articles.com/site/registrationsuccessful');
+            $this->redirect(Url::base() . '/site/registrationsuccessful');
         }
         return $this->render('registration', compact('regmodel'));
     }
