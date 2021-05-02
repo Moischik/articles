@@ -106,10 +106,13 @@ class UserController extends WhoIsClass
 
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            Yii::$app->session->setFlash('error', Json::encode($model->getErrors()));
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                Yii::$app->session->setFlash('error', Json::encode($model->getErrors()));
+            }
         }
 
 
