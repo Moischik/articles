@@ -40,8 +40,8 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
             ['label' => 'Статьи', 'url' => ['/site/article']],
-           // ['label' => 'О нас', 'url' => ['/site/about']],
-           // ['label' => 'Contact', 'url' => ['/site/contact']],
+            //['label' => 'О нас', 'url' => ['/site/about']],
+            //['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Опубликовать статью', 'url' => ['/site/add-article']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Войти', 'url' => ['/site/login']]
@@ -49,7 +49,7 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Выйти (' . Yii::$app->user->identity->username . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()

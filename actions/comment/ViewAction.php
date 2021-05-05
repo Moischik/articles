@@ -4,7 +4,7 @@
 namespace app\actions\comment;
 
 
-use app\models\Comments;
+use app\customs\models\Comments;
 use yii\base\Action;
 use yii\web\NotFoundHttpException;
 
@@ -16,16 +16,8 @@ class ViewAction extends Action
             $this->controller->redirect('/site/index');
         }
         return $this->controller->render('view', [
-            'model' => $this->findModel($id),
+            'model' => Comments::findModel($id),
         ]);
-    }
-    protected function findModel($id)
-    {
-        if (($model = Comments::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
 }

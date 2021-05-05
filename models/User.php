@@ -19,6 +19,7 @@ use Yii;
  * @property int $role
  *
  * @property Articles[] $articles
+ * @property Comments[] $comments
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -72,6 +73,16 @@ class User extends \yii\db\ActiveRecord
      */
     public function getArticles()
     {
-        return $this->hasMany(Articles::className(), ['author' => 'id']);
+        return $this->hasMany(Articles::className(), ['User_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Comments]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Comments::className(), ['User_id' => 'id']);
     }
 }

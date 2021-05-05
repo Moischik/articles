@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\actions\admin\IndexAction;
 use app\models\WhoIsClass;
 
 /**
@@ -12,14 +13,10 @@ class AdminController extends WhoIsClass
     public $layout = 'admin';
 
     /**
-     * Index main page
-     * @return string
+     * {@inheritdoc}
      */
-    public function actionIndex()
+    public function actions()
     {
-        if (parent::whoAreYou() == false) {
-            $this -> redirect('http://62.109.20.176/');
-        }
-        return $this -> render('index');
+        return ['index' => IndexAction::class];
     }
 }

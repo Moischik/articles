@@ -3,25 +3,22 @@
 
 namespace app\actions\user;
 
-
-use app\models\User;
+use \app\customs\models\User;
 use Yii;
 use yii\base\Action;
 use yii\helpers\Json;
-use yii\web\NotFoundHttpException;
 
 class UpdateAction extends Action
 {
     public function run($id)
     {
-        if ($this->controller->whoAreyou()== false) {
+        if ($this->controller->whoAreyou() == false) {
             $this->controller->redirect('/site/index');
         }
+        $model = User::findModel($id);
 
-        $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-
             if ($model->save()) {
                 return $this->controller->redirect(['view', 'id' => $model->id]);
             } else {
@@ -29,19 +26,8 @@ class UpdateAction extends Action
             }
         }
 
-
         return $this->controller->render('update', [
             'model' => $model,
         ]);
     }
-
-    protected function findModel($id)
-    {
-        if (($model = User::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
 }

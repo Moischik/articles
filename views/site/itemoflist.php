@@ -20,8 +20,8 @@ use yii\web\View;
     $categorie = \app\models\ArticlesCategories::find()->where(['id' => $categorie_id])->one();
     $categorietitle = $categorie->title;
 
-    $comments = \app\models\Comments::find()->where(['articles_id' => $articles_id])->one();
-    $comment = $comments->text;
+    //$comments = \app\models\Comments::find()->where(['articles_id' => $articles_id])->one();
+   // $comment = $comments->text;
     ?>
     <h3><?= 'Опубликовал: ' . Html::encode($model->user->username) . '  в категории: ' . Html::encode($categorietitle) ?></h3>
 

@@ -17,6 +17,22 @@ class User extends \app\models\User implements \yii\web\IdentityInterface
     private const STATUS_ACTIVE = 10;
 
     /**
+     * Finds the User model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return \app\models\User the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public static function findModel($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
      * Get tables name
      *
      * @return string
@@ -48,6 +64,13 @@ class User extends \app\models\User implements \yii\web\IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            [['username', 'auth_key', 'password_hash', 'created_at', 'updated_at'], 'required'],
+            [['status', 'created_at', 'updated_at', 'role'], 'integer'],
+            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['auth_key'], 'string', 'max' => 32],
+            [['username'], 'unique'],
+            [['password_reset_token'], 'unique'],
+            [['email'], 'unique'],
         ];
     }
 

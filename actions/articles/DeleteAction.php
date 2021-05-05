@@ -4,7 +4,7 @@
 namespace app\actions\articles;
 
 
-use app\models\Articles;
+use \app\customs\models\Articles;
 use yii\base\Action;
 use yii\web\NotFoundHttpException;
 
@@ -15,17 +15,8 @@ class DeleteAction extends Action
         if ($this->controller->whoAreyou()== false) {
             $this->controller->redirect('/site/index');
         }
-        $this->findModel($id)->delete();
+        Articles::findModel($id)->delete();
 
         return $this->controller->redirect(['index']);
     }
-    protected function findModel($id)
-    {
-        if (($model = Articles::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
 }

@@ -4,7 +4,7 @@
 namespace app\actions\articles;
 
 
-use app\models\Articles;
+use \app\customs\models\Articles;
 use yii\base\Action;
 use yii\web\NotFoundHttpException;
 
@@ -17,15 +17,7 @@ class ViewAction extends Action
         }
 
         return $this->controller->render('view', [
-            'model' => $this->findModel($id),
+            'model' => Articles::findModel($id),
         ]);
-    }
-    protected function findModel($id)
-    {
-        if (($model = Articles::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

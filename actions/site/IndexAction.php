@@ -11,3 +11,4 @@ class IndexAction extends Action
         return $this->controller->render('index');
     }
 }
+

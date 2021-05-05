@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'text',
             'categorie_id',
             'pub_date',
-            'views',
         ],
     ]) ?>
 

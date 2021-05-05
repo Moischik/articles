@@ -3,12 +3,10 @@
 
 namespace app\actions\articles;
 
-
-use app\models\Articles;
+use \app\customs\models\Articles;
 use Yii;
 use yii\base\Action;
 use yii\helpers\Json;
-use yii\web\NotFoundHttpException;
 
 class UpdateAction extends Action
 {
@@ -17,7 +15,7 @@ class UpdateAction extends Action
         if ($this->controller->whoAreyou() == false) {
             $this->controller->redirect('/site/index');
         }
-        $model = $this->findModel($id);
+        $model = Articles::findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
@@ -27,19 +25,8 @@ class UpdateAction extends Action
             }
         }
 
-            return $this->controller->render('update', [
-                'model' => $model,
-            ]);
-        }
-
-
-    protected function findModel($id)
-    {
-        if (($model = Articles::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
+        return $this->controller->render('update', [
+            'model' => $model,
+        ]);
     }
-
 }
