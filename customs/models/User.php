@@ -64,7 +64,7 @@ class User extends \app\models\User implements \yii\web\IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['username', 'auth_key', 'password_hash', 'created_at', 'updated_at'], 'required'],
+            [['username', 'auth_key', 'password_hash'], 'required'],
             [['status', 'created_at', 'updated_at', 'role'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
