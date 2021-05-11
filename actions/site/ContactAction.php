@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\actions\site;
-
 
 use app\models\ContactForm;
 use Yii;
@@ -22,5 +20,4 @@ class ContactAction extends Action
             'model' => $model,
         ]);
     }
-
 }

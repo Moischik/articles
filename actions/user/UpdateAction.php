@@ -1,6 +1,5 @@
 <?php
 
-
 namespace app\actions\user;
 
 use \app\customs\models\User;
@@ -16,7 +15,6 @@ class UpdateAction extends Action
             $this->controller->redirect('/site/index');
         }
         $model = User::findModel($id);
-
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {

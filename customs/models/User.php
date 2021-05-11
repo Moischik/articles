@@ -3,7 +3,6 @@
 namespace app\customs\models;
 
 use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 use yii\web\NotFoundHttpException;
 use Yii;
 
@@ -73,7 +72,6 @@ class User extends \app\models\User implements \yii\web\IdentityInterface
             [['email'], 'unique'],
         ];
     }
-
 
     /**
      * Get instance class identity

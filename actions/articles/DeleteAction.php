@@ -1,12 +1,9 @@
 <?php
 
-
 namespace app\actions\articles;
-
 
 use \app\customs\models\Articles;
 use yii\base\Action;
-use yii\web\NotFoundHttpException;
 
 class DeleteAction extends Action
 {

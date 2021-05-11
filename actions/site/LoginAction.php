@@ -1,19 +1,15 @@
 <?php
 
-
 namespace app\actions\site;
-
 
 use app\models\LoginForm;
 use Yii;
 use yii\base\Action;
 
-
 class LoginAction extends Action
 {
     public function run()
     {
-
         if (!Yii::$app->user->isGuest) {
             return $this->controller->goHome();
         }
@@ -28,5 +24,4 @@ class LoginAction extends Action
             'model' => $model,
         ]);
     }
-
 }

@@ -83,7 +83,7 @@ class Articles extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[FormAddComments]].
+     * Gets query for [[AddCommentsForm]].
      *
      * @return \yii\db\ActiveQuery
      */

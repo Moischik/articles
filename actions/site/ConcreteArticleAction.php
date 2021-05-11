@@ -1,10 +1,8 @@
 <?php
 
-
 namespace app\actions\site;
 
-
-use app\customs\models\FormAddComments;
+use app\customs\models\AddCommentsForm;
 use app\customs\models\User;
 use app\models\Articles;
 use app\models\ArticlesCategories;
@@ -19,33 +17,21 @@ class ConcreteArticleAction extends Action
         $articleId = Yii::$app->request->get('articleId');
         $this->controller->view->title = 'статья';
         $model = Articles::findOne($articleId);
-
         $user = User::find()->where(['id' => $model->User_id])->one();
-        $username = $user->username;
-
-        $pub_date = $model->pub_date;
-
+        $userName = $user->username;
+        $pubDate = $model->pub_date;
         $categorie = ArticlesCategories::find()->where(['id' => $model->categorie_id])->one();
-        $categorietitle = $categorie->title;
-
+        $categorieTitle = $categorie->title;
         $comments = Comments::find()->where(['articles_id' => $articleId])->all();
-        /* $comment = $comments->text;
-          $compub_date = $comments->pub_date;
-          $author = $comments->author;*/
-        $formcommentsmodel = new FormAddComments();
+        $addCommentsForm = new AddCommentsForm();
 
-
-        return $this->controller->render('concretearticle', [
+        return $this->controller->render('concrete-article', [
             'model' => $model,
-            'username' => $username,
-            'categorietitle' => $categorietitle,
-            'pub_date' => $pub_date,
+            'userName' => $userName,
+            'categorieTitle' => $categorieTitle,
+            'pubDate' => $pubDate,
             'comments' => $comments,
-            /*'comment' => $comment,
-            'compub_date' => $compub_date,
-            'author' => $author,*/
-            'formcommentsmodel' => $formcommentsmodel
+            'addCommentsForm' => $addCommentsForm
         ]);
     }
-
 }

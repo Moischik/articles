@@ -1,10 +1,8 @@
 <?php
 
-
 namespace app\actions\site;
 
-
-use app\customs\models\FormAddArticle;
+use app\customs\models\AddArticleForm;
 use app\models\Articles;
 use Yii;
 use yii\base\Action;
@@ -16,7 +14,7 @@ class AddArticleAction extends Action
     public function run()
     {
         $this->controller->view->title = 'Опубликовать статью';
-        $formarticlemodel = new FormAddArticle();
+        $addArticleForm = new AddArticleForm();
         $articlesProvider = new ActiveDataProvider([
             'query' => Articles::find()->with('user'),
             'pagination' => [
@@ -24,23 +22,21 @@ class AddArticleAction extends Action
             ],
         ]);
 
-        if ($formarticlemodel->load(Yii::$app->request->post()) && $formarticlemodel->validate()) {
+        if ($addArticleForm->load(Yii::$app->request->post()) && $addArticleForm->validate()) {
 
             $articles = new Articles();
             $articles->User_id =Yii::$app->user->identity->id;
-            $articles->text = $formarticlemodel->text;
-            $articles->title = $formarticlemodel->title;
-            $articles->categorie_id = $formarticlemodel->categorie;
+            $articles->text = $addArticleForm->text;
+            $articles->title = $addArticleForm->title;
+            $articles->categorie_id = $addArticleForm->categorie;
             $articles->pub_date = date('Y-m-d H:i:s');
             if ($articles->save()) {
                 return $this->controller->render('article', ['articlesProvider' => $articlesProvider]);
             } else {
                 Yii::$app->session->setFlash('error', Json::encode($articles->getErrors()));
             }
-
         }
 
-        return $this->controller->render('addarticle', ['formarticlemodel' => $formarticlemodel]);
+        return $this->controller->render('add-article', ['addArticleForm' => $addArticleForm]);
     }
-
 }

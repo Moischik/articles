@@ -9,7 +9,6 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-use yii\base\Widget;
 
 AppAsset::register($this);
 ?>
@@ -60,7 +59,6 @@ AppAsset::register($this);
         ],
     ]);
     NavBar::end();
-
     ?>
 
     <div class="container">
@@ -74,9 +72,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Отзывы <?= date('Y') ?></p>
+        <p class="pull-left">&copy; My Articles <?= date('Y') ?></p>
 
-        <!--<p class="pull-right"><?/*= Yii::powered() */?></p>-->
+        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 

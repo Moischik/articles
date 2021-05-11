@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\actions\site;
-
 
 use Yii;
 use yii\base\Action;
@@ -15,5 +13,4 @@ class LogoutAction extends Action
 
         return $this->controller->goHome();
     }
-
 }

@@ -43,7 +43,6 @@ class UserController extends WhoIsClass
             'create' => CreateAction::class,
             'update' => UpdateAction::class,
             'delete' => DeleteAction::class,
-
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-
 use app\actions\comment\DeleteAction;
 use app\actions\comment\IndexAction;
 use app\actions\comment\UpdateAction;
@@ -30,7 +29,6 @@ class CommentController extends WhoIsClass
                     'delete' => ['POST'],
                 ],
             ],
-
         ];
     }
 

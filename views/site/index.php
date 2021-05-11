@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = $this->title; ?>
         echo '<h2>Чтобы опубликовать свою статью, нужно ' . Html::a('зарегистрироваться', ['site/registration']) . ' на сайте или ' . Html::a('войти', ['site/login']) . '</h2>';
     }  ?>
 
-
     <!--<div class="jumbotron">
         <h1>Congratulations!</h1>
 

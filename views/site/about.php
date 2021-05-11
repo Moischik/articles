@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-use yii\db\Query;
 
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;

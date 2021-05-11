@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\actions\articles;
-
 
 use app\models\Articles;
 use Yii;
@@ -32,5 +30,4 @@ class CreateAction extends Action
 
         ]);
     }
-
 }

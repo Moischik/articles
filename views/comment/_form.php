@@ -19,9 +19,7 @@ use yii\widgets\ActiveForm;
     $model->pub_date = date('Y-m-d H:i:s');
     //$idClient = Yii::$app->user->identity->id;?>
 
-
     <?= $form->field($model, 'text')->textarea(['rows' => 10, 'cols' => 6]) ?>
-
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

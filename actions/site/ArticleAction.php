@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\actions\site;
-
 
 use app\models\Articles;
 use yii\base\Action;
@@ -22,5 +20,4 @@ class ArticleAction extends Action
 
         return $this->controller->render('article', ['articlesProvider' => $articlesProvider]);
     }
-
 }

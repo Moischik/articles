@@ -30,7 +30,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput() ?>
     <?= $form->field($model, 'text')->textarea(['rows' => 10, 'cols' => 6]) ?>
 
-
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

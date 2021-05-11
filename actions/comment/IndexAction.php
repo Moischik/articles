@@ -21,5 +21,4 @@ class IndexAction extends Action
             'dataProvider' => $dataProvider,
         ]);
     }
-
 }

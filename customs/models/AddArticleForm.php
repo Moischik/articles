@@ -4,21 +4,19 @@ namespace app\customs\models;
 
 use yii\base\Model;
 
-
 /**
  * Model form adding new articles
  *
- * Class FormAddArticle
+ * Class AddArticleForm
  * @package app\models
  */
-class FormAddArticle extends Model
+class AddArticleForm extends Model
 {
     public $name;
     public $categorie;
     public $text;
     public $title;
     public $verifyCode;
-
 
     /**
      * Validates fields form for adding new articles

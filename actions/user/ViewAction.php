@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\actions\user;
-
 
 use app\customs\models\User;
 use yii\base\Action;
@@ -19,5 +17,4 @@ class ViewAction extends Action
             'model' => User::findModel($id),
         ]);
     }
-
 }

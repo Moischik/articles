@@ -2,7 +2,6 @@
 
 namespace app\customs\models;
 
-use Yii;
 use yii\base\Model;
 
 /**
@@ -11,12 +10,11 @@ use yii\base\Model;
  * @property string $text
  * @property integer $articles_id
  */
-class FormAddComments extends Model
+class AddCommentsForm extends Model
 {
     public $user_id;
     public $text;
     public $articles_id;
-
 
     /**
      * {@inheritdoc}

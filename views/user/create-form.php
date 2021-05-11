@@ -4,16 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $regmodel app\models\RegistrationModel */
+/* @var $regModel app\models\RegistrationModel */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="user-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($regmodel, 'username') ?>
-    <?= $form->field($regmodel, 'password')->passwordInput(); ?>
-
+    <?= $form->field($regModel, 'username') ?>
+    <?= $form->field($regModel, 'password')->passwordInput(); ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -22,4 +21,3 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-

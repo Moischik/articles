@@ -21,5 +21,4 @@ class Comments extends \app\models\Comments
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }

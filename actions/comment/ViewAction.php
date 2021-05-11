@@ -1,12 +1,9 @@
 <?php
 
-
 namespace app\actions\comment;
-
 
 use app\customs\models\Comments;
 use yii\base\Action;
-use yii\web\NotFoundHttpException;
 
 class ViewAction extends Action
 {
@@ -19,5 +16,4 @@ class ViewAction extends Action
             'model' => Comments::findModel($id),
         ]);
     }
-
 }

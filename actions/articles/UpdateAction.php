@@ -1,6 +1,5 @@
 <?php
 
-
 namespace app\actions\articles;
 
 use \app\customs\models\Articles;

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\actions\site;
-
 
 use yii\base\Action;
 
@@ -12,5 +10,4 @@ class AboutAction extends Action
     {
         return $this->controller->render('about');
     }
-
 }

@@ -4,7 +4,7 @@ use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/* @var $regmodel app\models\RegistrationModel */
+/* @var $regModel app\models\RegistrationModel */
 
 $this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
@@ -13,10 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <h4>Регистрация</h4>
 
-<?php $formreg = ActiveForm::begin(); ?>
-<?= $formreg->field($regmodel, 'username') ?>
-<?= $formreg->field($regmodel, 'password')->passwordInput(); ?>
-<?= Html::submitButton('Зарегистрироваться', ['/site/registrationsuccessful']) ?>
+<?php $formReg = ActiveForm::begin(); ?>
+<?= $formReg->field($regModel, 'username') ?>
+<?= $formReg->field($regModel, 'password')->passwordInput(); ?>
+<?= Html::submitButton('Зарегистрироваться', ['/site/registration-successful']) ?>
 <?php ActiveForm::end() ?>
 
 <?= Alert::widget() ?>

@@ -10,12 +10,7 @@ use yii\data\ActiveDataProvider;
 $this->title = 'Статьи';
 $this->params['breadcrumbs'][] = $this->title;
 
-/*echo yii\grid\GridView::widget([
-    'dataProvider' => $articlesProvider,
-]);*/
-
-
 echo ListView::widget([
     'dataProvider' => $articlesProvider,
-    'itemView' => 'itemoflist',
+    'itemView' => 'item-of-list',
 ]);

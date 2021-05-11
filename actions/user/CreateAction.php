@@ -15,25 +15,24 @@ class CreateAction extends Action
         if ($this->controller->whoAreyou() == false) {
             $this->controller->redirect('/site/index');
         }
-        $regmodel = new RegistrationModel();
-        $newuser = new User();
+        $regModel = new RegistrationModel();
+        $newUser = new User();
 
-        if ($regmodel->load(Yii::$app->request->post())) {
-            $newuser->username = $regmodel->username;
-            $newuser->password_hash = Yii::$app->security->generatePasswordHash($regmodel->password);
-            $newuser->password_reset_token = $newuser->generateAuthKey();
+        if ($regModel->load(Yii::$app->request->post())) {
+            $newUser->username = $regModel->username;
+            $newUser->password_hash = Yii::$app->security->generatePasswordHash($regModel->password);
+            $newUser->password_reset_token = $newUser->generateAuthKey();
 
-            if ($newuser->save()) {
+            if ($newUser->save()) {
                 $this->controller->refresh();
-                return $this->controller->redirect(['view', 'id' => $newuser->id]);
+                return $this->controller->redirect(['view', 'id' => $newUser->id]);
             } else {
-                Yii::$app->session->setFlash('error', Json::encode($newuser->getErrors()));
+                Yii::$app->session->setFlash('error', Json::encode($newUser->getErrors()));
             }
         }
 
         return $this->controller->render('create', [
-            'regmodel' => $regmodel,
+            'regModel' => $regModel,
         ]);
-
     }
 }

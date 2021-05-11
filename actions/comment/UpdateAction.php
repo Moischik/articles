@@ -1,6 +1,5 @@
 <?php
 
-
 namespace app\actions\comment;
 
 use app\customs\models\Comments;
@@ -29,5 +28,4 @@ class UpdateAction extends Action
             'model' => $model,
         ]);
     }
-
 }

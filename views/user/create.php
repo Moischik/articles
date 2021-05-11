@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $regmodel app\models\RegistrationModel */
+/* @var $regModel app\models\RegistrationModel */
 
 $this->title = 'Create User';
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
@@ -13,8 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('createform', [
-        'regmodel' => $regmodel,
+    <?= $this->render('create-form', [
+        'regModel' => $regModel,
     ]) ?>
 
 </div>

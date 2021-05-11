@@ -3,7 +3,6 @@
 namespace app\actions\user;
 
 use app\models\User;
-use app\models\WhoIsClass;
 use yii\base\Action;
 use yii\data\ActiveDataProvider;
 
@@ -22,7 +21,5 @@ class IndexAction extends Action
         return $this->controller->render('index', [
             'dataProvider' => $dataProvider,
         ]);
-
     }
-
 }

@@ -1,12 +1,9 @@
 <?php
 
-
 namespace app\actions\user;
-
 
 use app\customs\models\User;
 use yii\base\Action;
-use yii\web\NotFoundHttpException;
 
 class DeleteAction extends Action
 {
@@ -20,5 +17,4 @@ class DeleteAction extends Action
 
         return $this->controller->redirect(['index']);
     }
-
 }

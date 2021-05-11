@@ -3,7 +3,6 @@
 namespace app\actions\articles;
 
 use app\models\Articles;
-use app\models\WhoIsClass;
 use yii\base\Action;
 use yii\data\ActiveDataProvider;
 
@@ -23,5 +22,4 @@ class IndexAction extends Action
             'dataProvider' => $dataProvider,
         ]);
     }
-
 }

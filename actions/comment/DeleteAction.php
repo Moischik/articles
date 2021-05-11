@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\actions\comment;
-
 
 use app\customs\models\Comments;
 use yii\base\Action;

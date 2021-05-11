@@ -30,7 +30,6 @@ class ArticlesController extends WhoIsClass
                     'delete' => ['POST'],
                 ],
             ],
-
         ];
     }
 
