@@ -2,11 +2,22 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'My Articles';
+use yii\helpers\Html;
 ?>
+
+<?php $this->title = 'Главная';
+$this->params['breadcrumbs'][] = $this->title; ?>
+
 <div class="site-index">
 
-    <div class="jumbotron">
+    <h1 align="center">Сайт со статьями.</h1>
+
+    <?php if (Yii::$app->user->isGuest) {
+        echo '<h2>Чтобы опубликовать свою статью, нужно ' . Html::a('зарегистрироваться', ['site/registration']) . ' на сайте или ' . Html::a('войти', ['site/login']) . '</h2>';
+    }  ?>
+
+    <!--<div class="jumbotron">
         <h1>Congratulations!</h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
@@ -49,5 +60,5 @@ $this->title = 'My Yii Application';
             </div>
         </div>
 
-    </div>
+    </div>-->
 </div>
